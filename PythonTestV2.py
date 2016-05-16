@@ -65,7 +65,7 @@ def one_item_inputted(first_input):
 
 def two_items_inputted(first_input, second_input):
     if second_input == '-create':
-        check_or_create(first_input, second_input)
+        check_or_create(first_input)
     elif second_input.endswith('.txt'):
         print("lets go")
         fake =5
@@ -73,11 +73,14 @@ def two_items_inputted(first_input, second_input):
         print ("The second input is invalid, please try again")
 
 
-def check_or_create(first_input, second_input):
-    fake = 5
-    print("good")
-
-
+def check_or_create(first_input):
+    true_or_false = check_valid_path(first_input)
+    if true_or_false == True:
+        print("Cannot create new path, path already exists. Please try a different one")
+    else:
+        print("So lets do it now for you")
+        os.makedirs(first_input)
+        print(os.path.abspath(first_input))
 
 
 def three_items_inputted():
@@ -88,7 +91,7 @@ def check_valid_path(filelocation):
     if os.path.exists(filelocation) == True:
         return True
     else:
-        print('The file path is not valid, please retry with valid path....')
+        print('The file path is not created')
         return False
 
 
