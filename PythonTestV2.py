@@ -63,8 +63,22 @@ def one_item_inputted(first_input):
         sys.exit()
 
 
-def two_items_inputted():
+def two_items_inputted(first_input, second_input):
+    if second_input == '-create':
+        check_or_create(first_input, second_input)
+    elif second_input.endswith('.txt'):
+        print("lets go")
+        fake =5
+    else:
+        print ("The second input is invalid, please try again")
+
+
+def check_or_create(first_input, second_input):
     fake = 5
+    print("good")
+
+
+
 
 def three_items_inputted():
     fake = 5
