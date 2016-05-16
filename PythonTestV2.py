@@ -1,6 +1,5 @@
 import os
 import sys
-import shutil
 
 
 def main():
@@ -56,7 +55,6 @@ def run_correct_command(first_input, second_input, third_input, total_input):
             three_items_inputted(first_input, second_input)
         else:
             print("The third input is incorrect, please reenter everything correctly")
-            sys.exit()
 
 
 def one_item_inputted(first_input):
@@ -65,7 +63,6 @@ def one_item_inputted(first_input):
         print(os.path.abspath(first_input))
     else:
         print("File path does not exist")
-        sys.exit()
 
 
 def two_items_inputted(first_input, second_input):
@@ -74,7 +71,7 @@ def two_items_inputted(first_input, second_input):
     elif second_input.endswith('.txt'):
         store_absolute_in_file_or_ignore(first_input, second_input)
     else:
-        print ("The second input is invalid, please try again")
+        print("The second input is invalid, please try again")
 
 
 def check_or_create(first_input):
