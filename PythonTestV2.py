@@ -52,7 +52,11 @@ def run_correct_command(first_input, second_input, third_input, total_input):
     elif total_input == 2:
         two_items_inputted(first_input, second_input)
     else:
-        three_items_inputted(first_input, second_input, third_input)
+        if third_input == '-create':
+            three_items_inputted(first_input, second_input)
+        else:
+            print("The third input is incorrect, please reenter everything correctly")
+            sys.exit()
 
 
 def one_item_inputted(first_input):
@@ -78,7 +82,7 @@ def check_or_create(first_input):
     if true_or_false == True:
         print("Cannot create new path, path already exists. Please try a different one")
     else:
-        print("So lets do it now for you")
+        print("New folder created")
         os.makedirs(first_input)
         print(os.path.abspath(first_input))
 
@@ -89,12 +93,21 @@ def store_absolute_in_file_or_ignore(first_input, second_input):
             true_or_false = check_valid_path(each_line)
             new_file = open(second_input, 'w')
             if true_or_false == True:
-                new_file.write(os.path.abspath(each_line))
+                new_file.write(os.path.abspath(each_line) + '\n')
 
 
-def three_items_inputted():
-    fake = 5
-
+def three_items_inputted(first_input, second_input):
+    with open(first_input) as relative_paths:
+        new_file = open(second_input, 'w')
+        for each_line in relative_paths:
+            true_or_false = check_valid_path(each_line)
+            if true_or_false == True:
+                new_file.write(os.path.abspath(each_line) + '\n')
+            else:
+                each_line = each_line[:-1]
+                os.makedirs(os.path.abspath(each_line))
+                new_location = (os.path.abspath(each_line) + '\n')
+                new_file.write(new_location)
 
 def check_valid_path(filelocation):
     if os.path.exists(filelocation) == True:
