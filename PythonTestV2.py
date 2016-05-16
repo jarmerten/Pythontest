@@ -8,12 +8,28 @@ def main():
     second_input = user_input2()
     third_input = user_input3()
     total_input = number_of_inputs(first_input, second_input, third_input)
+    run_correct_command(first_input, second_input, third_input, total_input)
 
-    print (first_input)
-    print (second_input)
-    print (third_input)
-    print (total_input)
 
+def run_correct_command(first_input, second_input, third_input, total_input):
+    if total_input == 1:
+        one_item_inputted(first_input)
+    elif total_input == 2:
+        two_items_inputted(first_input, second_input)
+    else:
+        three_items_inputted(first_input, second_input, third_input)
+
+
+def one_item_inputted(first_input):
+    check_valid_path(first_input)
+    print(os.path.abspath(first_input))
+
+
+def two_items_inputted():
+    fake = 5
+
+def three_items_inputted():
+    fake = 5
 
 
 def user_input1():
@@ -51,11 +67,9 @@ def number_of_inputs(first_input, second_input, third_input):
     return paths_total
 
 
-
-
 def check_valid_path(filelocation):
     if os.path.exists(filelocation) == True:
-        return
+            return
     else:
         print('The file path is not valid, please retry with valid path....')
 
