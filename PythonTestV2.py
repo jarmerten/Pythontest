@@ -60,6 +60,7 @@ def one_item_inputted(first_input):
     if true_or_false == True:
         print(os.path.abspath(first_input))
     else:
+        print("File path does not exist")
         sys.exit()
 
 
@@ -67,8 +68,7 @@ def two_items_inputted(first_input, second_input):
     if second_input == '-create':
         check_or_create(first_input)
     elif second_input.endswith('.txt'):
-        print("lets go")
-        fake =5
+        store_absolute_in_file_or_ignore(first_input, second_input)
     else:
         print ("The second input is invalid, please try again")
 
@@ -83,6 +83,15 @@ def check_or_create(first_input):
         print(os.path.abspath(first_input))
 
 
+def store_absolute_in_file_or_ignore(first_input, second_input):
+    with open(first_input) as relative_paths:
+        for each_line in relative_paths:
+            true_or_false = check_valid_path(each_line)
+            new_file = open(second_input, 'w')
+            if true_or_false == True:
+                new_file.write(os.path.abspath(each_line))
+
+
 def three_items_inputted():
     fake = 5
 
@@ -91,7 +100,6 @@ def check_valid_path(filelocation):
     if os.path.exists(filelocation) == True:
         return True
     else:
-        print('The file path is not created')
         return False
 
 
