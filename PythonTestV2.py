@@ -11,27 +11,6 @@ def main():
     run_correct_command(first_input, second_input, third_input, total_input)
 
 
-def run_correct_command(first_input, second_input, third_input, total_input):
-    if total_input == 1:
-        one_item_inputted(first_input)
-    elif total_input == 2:
-        two_items_inputted(first_input, second_input)
-    else:
-        three_items_inputted(first_input, second_input, third_input)
-
-
-def one_item_inputted(first_input):
-    check_valid_path(first_input)
-    print(os.path.abspath(first_input))
-
-
-def two_items_inputted():
-    fake = 5
-
-def three_items_inputted():
-    fake = 5
-
-
 def user_input1():
     first_input = sys.argv[1]
     return first_input
@@ -67,11 +46,36 @@ def number_of_inputs(first_input, second_input, third_input):
     return paths_total
 
 
+def run_correct_command(first_input, second_input, third_input, total_input):
+    if total_input == 1:
+        one_item_inputted(first_input)
+    elif total_input == 2:
+        two_items_inputted(first_input, second_input)
+    else:
+        three_items_inputted(first_input, second_input, third_input)
+
+
+def one_item_inputted(first_input):
+    true_or_false = check_valid_path(first_input)
+    if true_or_false == True:
+        print(os.path.abspath(first_input))
+    else:
+        sys.exit()
+
+
+def two_items_inputted():
+    fake = 5
+
+def three_items_inputted():
+    fake = 5
+
+
 def check_valid_path(filelocation):
     if os.path.exists(filelocation) == True:
-            return
+        return True
     else:
         print('The file path is not valid, please retry with valid path....')
+        return False
 
 
 if __name__ == "__main__":
